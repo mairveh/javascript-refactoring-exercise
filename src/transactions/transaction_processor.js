@@ -15,7 +15,7 @@ function processTransactions(transactions) {
     //let txCount = {}
 
     //remove below because it's not needed in Array.reduce which is being used instead
-   //const numberOfTransactions = transactions.length;
+    //const numberOfTransactions = transactions.length;
 
     //change var to let
     //add transactions.length in the for loop header
@@ -26,12 +26,14 @@ function processTransactions(transactions) {
 
     txCount = sortByAmountThenName(txCount);
     
-     //add const for  and rename as txArray and move below
-     const txArray = [];
+    //Rename as txArray and move below
+    let txArray = [];
+    //Replace forEach below with map 
     // Place them back in array for returning
-    Object.keys(txCount).forEach(function (key, index) {
+    /*Object.keys(txCount).forEach(function (key, index) {
         txArray[index] = `${key} ${txCount[key]}`;
-    });
+    });*/
+    txArray = Object.keys(txCount).map((key) => `${key} ${txCount[key]}`)
 
     return txArray;
 }
