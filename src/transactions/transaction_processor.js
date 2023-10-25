@@ -4,9 +4,6 @@
 //replace transActions with transactions
 function processTransactions(transactions) {
 
-    //add const for  and rename as txArray
-    const txArray = [];
-
     //replace below function with a simple if logic
     /*if(!validateTransactions(transactions)) {
         throw new Error("Undefined collection of transactions")
@@ -14,24 +11,24 @@ function processTransactions(transactions) {
     if (transactions===undefined)
         throw new Error("Undefined collection of transactions")
 
-    let txCount = {}
+    //remove the declaration and put it in Array.reduce below
+    //let txCount = {}
 
-    //adding below in the for loop header
+    //remove below because it's not needed in Array.reduce which is being used instead
    //const numberOfTransactions = transactions.length;
 
     //change var to let
     //add transactions.length in the for loop header
-    for(let i = 0; i < transactions.length; i++) {
-        const transaction = transactions[i];
-        txCount[transaction] ? txCount[transaction] += 1 : txCount[transaction] = 1;
-    }
+    let txCount = transactions.reduce((acc, curr) => {
+        acc[curr]?(acc[curr]++):(acc[curr]=1);
+        return acc;
+    }, {});
 
     txCount = sortByAmountThenName(txCount);
     
+     //add const for  and rename as txArray and move below
+     const txArray = [];
     // Place them back in array for returning
-    //replace for eaxch with map
-    //Object.keys(txCount).map((key) => `${key} ${txCount[key]}`)
-    Array.from(txCount)
     Object.keys(txCount).forEach(function (key, index) {
         txArray[index] = `${key} ${txCount[key]}`;
     });
