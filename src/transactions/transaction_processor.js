@@ -8,11 +8,8 @@ function processTransactions(transactions) {
         return acc;
     }, {});
 
-    let txArray = [];
-    txArray = Object.keys(txCount).sort((itemOne, itemTwo) => (txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo)))
-    txArray = txArray.map((key) => `${key} ${txCount[key]}`)
-
-    return txArray;
+    return Object.keys(txCount).sort((itemOne, itemTwo) => (txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo)))
+    .map((key) => `${key} ${txCount[key]}`)
 }
 
 module.exports = processTransactions;
